@@ -1,5 +1,6 @@
 package io.sease.tools.word2vec;
 
+import java.util.Objects;
 import lombok.extern.slf4j.Slf4j;
 import org.deeplearning4j.models.embeddings.loader.WordVectorSerializer;
 import org.deeplearning4j.models.word2vec.Word2Vec;
@@ -19,7 +20,7 @@ public class CreateSynonymsFileFromTrainedModel {
     public static void main(String[] args) throws IOException {
         log.info("Read a word2vec trained model from file");
         long startTime = System.currentTimeMillis();
-        Word2Vec word2Vec = WordVectorSerializer.readWord2VecModel("wiki-ita-w2v-model.zip");
+        Word2Vec word2Vec = WordVectorSerializer.readWord2VecModel("model.zip");
         long elapsedTime = System.currentTimeMillis() - startTime;
         log.info("Model loaded in {} ms", elapsedTime);
 

@@ -24,7 +24,7 @@ public class FieldValuesSentenceIterator implements SentenceIterator {
 
     public FieldValuesSentenceIterator(Config config) throws IOException {
         Path path = Paths.get(config.getIndexPath());
-        Directory directory = FSDirectory.open(path);
+        Directory directory = new FileSystemDirectory(path);
         reader = DirectoryReader.open(directory);
         fieldName = config.getFieldName();
     }

@@ -1,5 +1,7 @@
 package io.sease.tools.word2vec;
 
+import java.io.File;
+import java.io.FileReader;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
@@ -19,7 +21,8 @@ public class ModelTrainer {
     public static void main(String[] args) throws IOException {
         long startTime, elapsedTime;
 
-        Config config = parseConfiguration(args);
+//        Config config = parseConfiguration(args);
+        Config config = new Config("/Users/william.zhou/012345678901234567890124_f6_u0_a0", "$type:string/descriptions.en.value", "model.zip");
 
         FieldValuesSentenceIterator iterator = new FieldValuesSentenceIterator(config);
 
@@ -38,6 +41,12 @@ public class ModelTrainer {
         WordVectorSerializer.writeWord2VecModel(vec, config.getModelFilePath());
         log.info("Model file {} generated", config.getModelFilePath());
     }
+
+//  public static void main(String[] args) throws IOException {
+//    File file = new File("model.bin");
+//    Word2Vec word2Vec= WordVectorSerializer.readAsBinary(file);
+//
+//  }
 
     private static Config parseConfiguration(String[] args){
 
@@ -81,7 +90,8 @@ public class ModelTrainer {
             }
 
             String indexPath = cmd.getOptionValue("path");
-            String field = cmd.getOptionValue("field");
+            String field;
+            field = "$type:string/descriptions.en.value";
             String modelFile = cmd.getOptionValue("output");
 
             log.info("indexPath = {}", indexPath);
